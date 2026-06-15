@@ -1,12 +1,17 @@
 # Build the Jekyll site and deploy it to GitHub Pages.
-name: Deploy Jekyll to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-  # TEMPORARY: build on pull requests targeting main to validate changes.
+    paths-ignore:
+      - '.github/**/*.md'
+      - 'LICENSE'
+      - 'SECURITY.md'
+      - 'AGENTS.md'
+      - 'README.md'
   pull_request:
-    branches: [main]
+    branches: 
+      - main
   workflow_dispatch:
 
 # Allow read of repo contents plus the tokens required to publish to Pages.
@@ -30,7 +35,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@89f90524b88a01fe6e0b732220432cc6142926af # v1.313.0
         with:
-          ruby-version: '3.3'
+          ruby-version: '4.0.5'
           bundler-cache: true
       - name: Configure Pages
         id: pages
@@ -46,8 +51,7 @@ jobs:
 
   deploy:
     needs: build
-    # Only publish on push to main / manual runs, not on pull request builds.
-    if: github.event_name != 'pull_request'
+    # if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
