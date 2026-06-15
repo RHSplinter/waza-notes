@@ -1,6 +1,7 @@
 ---
 title: General
 layout: default
+permalink: /general/
 ---
 
 # General

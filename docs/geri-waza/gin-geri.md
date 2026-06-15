@@ -1,6 +1,7 @@
 ---
 title: Gin Geri
 layout: default
+permalink: /geri-waza/gin-geri/
 ---
 
 # Gin Geri

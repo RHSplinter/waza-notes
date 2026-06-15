@@ -1,6 +1,7 @@
 ---
 title: Pinan Sono Ni
 layout: default
+permalink: /kata/pinan-sono-ni/
 ---
 
 # Pinan Sono Ni

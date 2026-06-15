@@ -1,6 +1,7 @@
 ---
 title: Tsukino Kata
 layout: default
+permalink: /kata/tsukino-kata/
 ---
 
 # Tsukino Kata

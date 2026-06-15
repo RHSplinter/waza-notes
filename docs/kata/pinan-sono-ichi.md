@@ -1,6 +1,7 @@
 ---
 title: Pinan Sono Ichi
 layout: default
+permalink: /kata/pinan-sono-ichi/
 ---
 
 # Pinan Sono Ichi

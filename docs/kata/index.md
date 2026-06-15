@@ -1,6 +1,7 @@
 ---
 title: Kata
 layout: default
+permalink: /kata/
 ---
 
 # Kata

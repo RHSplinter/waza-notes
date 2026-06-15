@@ -1,6 +1,7 @@
 ---
 title: Dictionary
 layout: default
+permalink: /dictionary/
 ---
 
 # Dictionary

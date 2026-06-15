@@ -1,6 +1,7 @@
 ---
 title: Geri Waza
 layout: default
+permalink: /geri-waza/
 ---
 
 # Geri Waza
