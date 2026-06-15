@@ -1,0 +1,36 @@
+- title: General
+  url: /general
+- title: Dictionary
+  url: /dictionary
+- title: Geri Waza
+  url: /geri-waza
+  children:
+    - title: Gin Geri
+      url: /geri-waza/gin-geri
+    - title: Mae Geri
+      url: /geri-waza/mae-geri
+    - title: Mawashi Geri
+      url: /geri-waza/mawashi-geri
+    - title: Kansetsu Geri
+      url: /geri-waza/kansetsu-geri
+    - title: Yoko Geri
+      url: /geri-waza/yoko-geri
+    - title: Ushiro Geri
+      url: /geri-waza/ushiro-geri
+- title: Kata
+  url: /kata
+  children:
+    - title: Pinan Sono Ichi
+      url: /kata/pinan-sono-ichi
+    - title: Pinan Sono Ni
+      url: /kata/pinan-sono-ni
+    - title: Pinan Sono San
+      url: /kata/pinan-sono-san
+    - title: Pinan Sono Yon
+      url: /kata/pinan-sono-yon
+    - title: Pinan Sono Go
+      url: /kata/pinan-sono-gp
+    - title: Tsukino Kata
+      url: /kata/tsukino-kata
+    - title: Saifa
+      url: /kata/saifa

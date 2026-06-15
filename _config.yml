@@ -1,0 +1,20 @@
+title: waza-notes
+description: Feedback and notes from karate trainings
+theme: jekyll-theme-hacker
+permalink: pretty
+
+# For project sites served at user.github.io/waza-notes/
+baseurl: "/waza-notes"
+url: "https://rhsplinter.github.io"
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - plan.md
+  - README.md
+  - AGENTS.md
+  - LICENSE
+  - vendor
