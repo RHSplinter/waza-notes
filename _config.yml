@@ -3,6 +3,10 @@ description: Feedback and notes from karate trainings
 theme: jekyll-theme-hacker
 permalink: pretty
 
+# Repository name (owner/repo) used by jekyll-github-metadata to populate
+# the site.github.* variables referenced in the theme's default layout.
+repository: RHSplinter/waza-notes
+
 # For project sites served at user.github.io/waza-notes/
 baseurl: "/waza-notes"
 url: "https://rhsplinter.github.io"
