@@ -18,10 +18,15 @@
     {% include head-custom.html %}
   </head>
   <body>
+      <div id="header">
+        <div class="header-inner">
+          <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | default: site.github.repository_name }}</a>
+          {% include topbar.html %}
+        </div>
+      </div><!-- end header -->
+
     <div class="wrapper">
       <section>
-        {% include topbar.html %}
-
         {{ content }}
       </section>
     </div>

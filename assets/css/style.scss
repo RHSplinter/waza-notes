@@ -11,22 +11,40 @@
 section {
   max-width: none;
   width: auto;
-  /* No fixed header anymore, so drop the theme's 70px top clearance. */
-  margin-top: 20px;
+  /* Clear the fixed 60px header. */
+  margin-top: 80px;
 }
 
-/* ---- Top navigation bar ---- */
+/* ---- Header: brand + nav in one fixed bar ---- */
+#header .header-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 1000px;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#header .brand {
+  color: #ffcc00;
+  font-size: 22px;
+  font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+#header .brand:hover {
+  color: #ffeb9b;
+}
+
+/* ---- Navigation (a div, not <nav>, to avoid midnight's #header nav styles) ---- */
 #topbar {
-  /* midnight hides all <nav> at <=480px via a bare `nav { display:none }`
-     rule; this id selector overrides it so our nav stays visible on phones. */
-  display: block;
-  margin: 0 0 40px;
-  border-top: 1px solid #434343;
-  border-bottom: 1px solid #434343;
-  background: rgba(255, 255, 255, 0.02);
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-/* Hidden checkboxes that drive the (mobile) hamburger and the submenu toggles */
 #topbar .nav-toggle,
 #topbar .dropdown-toggle {
   position: absolute;
@@ -39,8 +57,8 @@ section {
 #topbar .nav-toggle-label {
   display: none;
   align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
+  gap: 10px;
+  padding: 10px 4px;
   color: #f0e7d5;
   cursor: pointer;
   user-select: none;
@@ -78,11 +96,12 @@ section {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 #topbar .nav-item {
   position: relative;
+  display: block;
   list-style: none;
   list-style-image: none;
   margin: 0;
@@ -90,13 +109,14 @@ section {
 
 #topbar .nav-link {
   display: block;
-  padding: 12px 18px;
+  padding: 20px 16px;
+  line-height: 20px;
   color: #f0e7d5;
   white-space: nowrap;
 }
 
 #topbar .has-dropdown > .nav-link {
-  padding-right: 36px;
+  padding-right: 34px;
 }
 
 #topbar .nav-link:hover,
@@ -116,7 +136,7 @@ section {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 40px;
+  width: 34px;
   margin: 0;
   cursor: pointer;
   pointer-events: none; /* desktop: hover opens the submenu, not the caret */
@@ -126,7 +146,7 @@ section {
   content: "";
   position: absolute;
   top: 50%;
-  right: 16px;
+  right: 14px;
   margin-top: -2px;
   width: 0;
   height: 0;
@@ -153,6 +173,7 @@ section {
 }
 
 #topbar .dropdown li {
+  display: block;
   list-style: none;
   list-style-image: none;
   margin: 0;
@@ -183,26 +204,52 @@ section {
   }
 }
 
-/* ---- Small screens: hamburger + tap-to-expand submenus ---- */
+/* ---- Small screens: hamburger opens the nav as a panel below the header ---- */
 @media (max-width: 768px) {
+  #header {
+    margin-top: 0;
+  }
+
+  #topbar {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
   #topbar .nav-toggle-label {
     display: flex;
   }
 
   #topbar .nav-menu {
     display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
     flex-direction: column;
     width: 100%;
-    border-top: 1px solid #434343;
+    background: #1c1c1c;
+    border-bottom: 1px solid #434343;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    z-index: 150;
   }
 
   #topbar .nav-toggle:checked ~ .nav-menu {
     display: flex;
   }
 
+  #topbar .nav-link {
+    padding: 12px 18px;
+    line-height: 1.4;
+  }
+
+  #topbar .has-dropdown > .nav-link {
+    padding-right: 44px;
+  }
+
   /* Caret becomes tappable; submenu stays collapsed until its caret is tapped */
   #topbar .caret {
     pointer-events: auto;
+    width: 44px;
   }
 
   #topbar .dropdown {
