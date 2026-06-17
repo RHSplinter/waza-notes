@@ -11,28 +11,8 @@
 section {
   max-width: none;
   width: auto;
-}
-
-/* ---- Header brand ---- */
-#header .header-inner {
-  max-width: 1000px;
-  height: 60px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-}
-
-#header .brand {
-  color: #ffcc00;
-  font-size: 24px;
-  font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-}
-
-#header .brand:hover {
-  color: #ffeb9b;
+  /* No fixed header anymore, so drop the theme's 70px top clearance. */
+  margin-top: 20px;
 }
 
 /* ---- Top navigation bar ---- */
@@ -46,14 +26,16 @@ section {
   background: rgba(255, 255, 255, 0.02);
 }
 
-/* Hamburger toggle (hidden on desktop, shown on small screens) */
-#topbar .nav-toggle {
+/* Hidden checkboxes that drive the (mobile) hamburger and the submenu toggles */
+#topbar .nav-toggle,
+#topbar .dropdown-toggle {
   position: absolute;
   width: 1px;
   height: 1px;
   opacity: 0;
 }
 
+/* Hamburger button (hidden on desktop, shown on small screens) */
 #topbar .nav-toggle-label {
   display: none;
   align-items: center;
@@ -113,6 +95,10 @@ section {
   white-space: nowrap;
 }
 
+#topbar .has-dropdown > .nav-link {
+  padding-right: 36px;
+}
+
 #topbar .nav-link:hover,
 #topbar .has-dropdown:hover > .nav-link {
   background: rgba(255, 255, 255, 0.06);
@@ -124,13 +110,29 @@ section {
   box-shadow: inset 0 -3px 0 #ffcc00;
 }
 
+/* Caret is a <label> tied to the submenu's toggle checkbox */
 #topbar .caret {
-  display: inline-block;
-  margin-left: 6px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  margin: 0;
+  cursor: pointer;
+  pointer-events: none; /* desktop: hover opens the submenu, not the caret */
+}
+
+#topbar .caret::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  margin-top: -2px;
+  width: 0;
+  height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 5px solid currentColor;
-  vertical-align: middle;
+  border-top: 5px solid #f0e7d5;
 }
 
 #topbar .dropdown {
@@ -147,12 +149,7 @@ section {
   border-top: none;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
   z-index: 200;
-  display: none;
-}
-
-#topbar .has-dropdown:hover > .dropdown,
-#topbar .has-dropdown:focus-within > .dropdown {
-  display: block;
+  display: none; /* collapsed by default everywhere */
 }
 
 #topbar .dropdown li {
@@ -177,17 +174,17 @@ section {
   color: #ffcc00;
 }
 
-/* ---- Small screens: collapse the menu into a hamburger ---- */
+/* ---- Desktop: reveal submenus on hover / keyboard focus ---- */
+@media (min-width: 769px) {
+  #topbar .has-dropdown:hover > .dropdown,
+  #topbar .has-dropdown:focus-within > .dropdown,
+  #topbar .dropdown-toggle:checked ~ .dropdown {
+    display: block;
+  }
+}
+
+/* ---- Small screens: hamburger + tap-to-expand submenus ---- */
 @media (max-width: 768px) {
-  /* Keep our fixed header at full height (midnight nudges it up on phones). */
-  #header {
-    margin-top: 0;
-  }
-
-  section {
-    margin-top: 70px;
-  }
-
   #topbar .nav-toggle-label {
     display: flex;
   }
@@ -199,22 +196,30 @@ section {
     border-top: 1px solid #434343;
   }
 
-  /* Reveal the menu when the hamburger checkbox is checked. */
   #topbar .nav-toggle:checked ~ .nav-menu {
     display: flex;
   }
 
-  #topbar .dropdown {
-    position: static;
-    display: block;
-    border: none;
-    box-shadow: none;
-    padding: 0 0 6px 18px;
-    background: transparent;
-    min-width: 0;
+  /* Caret becomes tappable; submenu stays collapsed until its caret is tapped */
+  #topbar .caret {
+    pointer-events: auto;
   }
 
-  #topbar .caret {
-    display: none;
+  #topbar .dropdown {
+    position: static;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    min-width: 0;
+    padding: 0 0 6px 18px;
+  }
+
+  #topbar .dropdown-toggle:checked ~ .dropdown {
+    display: block;
+  }
+
+  #topbar .dropdown-toggle:checked ~ .caret::after {
+    margin-top: -3px;
+    transform: rotate(180deg);
   }
 }
