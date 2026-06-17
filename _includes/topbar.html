@@ -1,0 +1,33 @@
+<div id="topbar" role="navigation" aria-label="Primary navigation">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation menu">
+    <span class="hamburger"></span>
+    <span class="nav-toggle-text">Menu</span>
+  </label>
+  <ul class="nav-menu">
+    <li class="nav-item">
+      <a href="{{ '/' | relative_url }}"
+         class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
+    </li>
+    {% for item in site.data.navigation %}
+      <li class="nav-item{% if item.children %} has-dropdown{% endif %}">
+        {% if item.children %}<input type="checkbox" id="dd-{{ item.title | slugify }}" class="dropdown-toggle">{% endif %}
+        <a href="{{ item.url | relative_url }}"
+           class="nav-link{% if page.url contains item.url %} active{% endif %}">{{ item.title }}</a>
+        {% if item.children %}
+          <label for="dd-{{ item.title | slugify }}" class="caret" aria-label="Toggle {{ item.title }} submenu"></label>
+          <ul class="dropdown">
+            {% for child in item.children %}
+              <li>
+                <a href="{{ child.url | relative_url }}"
+                   class="dropdown-link{% if page.url == child.url or page.url == child.url | append: '/' %} active{% endif %}">
+                  {{ child.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
