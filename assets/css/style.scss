@@ -15,6 +15,9 @@ section {
 
 /* ---- Top navigation bar ---- */
 #topbar {
+  /* midnight hides all <nav> at <=480px via a bare `nav { display:none }`
+     rule; this id selector overrides it so our nav stays visible on phones. */
+  display: block;
   margin: 0 0 40px;
   border-top: 1px solid #434343;
   border-bottom: 1px solid #434343;
