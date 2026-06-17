@@ -246,10 +246,15 @@ section {
     padding-right: 44px;
   }
 
-  /* Caret becomes tappable; submenu stays collapsed until its caret is tapped */
+  /* Caret becomes tappable; submenu stays collapsed until its caret is tapped.
+     Pin its height to the category row so the arrow stays inline with the
+     category label instead of centering over the expanded children. */
   #topbar .caret {
     pointer-events: auto;
     width: 44px;
+    top: 0;
+    bottom: auto;
+    height: calc(1.4em + 24px);
   }
 
   #topbar .dropdown {
