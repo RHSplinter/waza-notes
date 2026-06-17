@@ -13,6 +13,28 @@ section {
   width: auto;
 }
 
+/* ---- Header brand ---- */
+#header .header-inner {
+  max-width: 1000px;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+#header .brand {
+  color: #ffcc00;
+  font-size: 24px;
+  font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+#header .brand:hover {
+  color: #ffeb9b;
+}
+
 /* ---- Top navigation bar ---- */
 #topbar {
   /* midnight hides all <nav> at <=480px via a bare `nav { display:none }`
@@ -22,6 +44,50 @@ section {
   border-top: 1px solid #434343;
   border-bottom: 1px solid #434343;
   background: rgba(255, 255, 255, 0.02);
+}
+
+/* Hamburger toggle (hidden on desktop, shown on small screens) */
+#topbar .nav-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+#topbar .nav-toggle-label {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  color: #f0e7d5;
+  cursor: pointer;
+  user-select: none;
+}
+
+#topbar .nav-toggle-label .hamburger {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+}
+
+#topbar .nav-toggle-label .hamburger::before,
+#topbar .nav-toggle-label .hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+}
+
+#topbar .nav-toggle-label .hamburger::before {
+  top: -7px;
+}
+
+#topbar .nav-toggle-label .hamburger::after {
+  top: 7px;
 }
 
 #topbar .nav-menu {
@@ -111,10 +177,31 @@ section {
   color: #ffcc00;
 }
 
-/* ---- Small screens: stack the menu and inline the dropdowns ---- */
+/* ---- Small screens: collapse the menu into a hamburger ---- */
 @media (max-width: 768px) {
+  /* Keep our fixed header at full height (midnight nudges it up on phones). */
+  #header {
+    margin-top: 0;
+  }
+
+  section {
+    margin-top: 70px;
+  }
+
+  #topbar .nav-toggle-label {
+    display: flex;
+  }
+
   #topbar .nav-menu {
+    display: none;
     flex-direction: column;
+    width: 100%;
+    border-top: 1px solid #434343;
+  }
+
+  /* Reveal the menu when the hamburger checkbox is checked. */
+  #topbar .nav-toggle:checked ~ .nav-menu {
+    display: flex;
   }
 
   #topbar .dropdown {
