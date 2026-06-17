@@ -1,0 +1,28 @@
+<nav id="topbar" aria-label="Primary navigation">
+  <ul class="nav-menu">
+    <li class="nav-item">
+      <a href="{{ '/' | relative_url }}"
+         class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
+    </li>
+    {% for item in site.data.navigation %}
+      <li class="nav-item{% if item.children %} has-dropdown{% endif %}">
+        <a href="{{ item.url | relative_url }}"
+           class="nav-link{% if page.url contains item.url %} active{% endif %}">
+          {{ item.title }}{% if item.children %}<span class="caret"></span>{% endif %}
+        </a>
+        {% if item.children %}
+          <ul class="dropdown">
+            {% for child in item.children %}
+              <li>
+                <a href="{{ child.url | relative_url }}"
+                   class="dropdown-link{% if page.url == child.url or page.url == child.url | append: '/' %} active{% endif %}">
+                  {{ child.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

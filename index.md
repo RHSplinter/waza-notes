@@ -7,7 +7,7 @@ layout: default
 
 Feedback and notes from karate trainings, organized by category.
 
-Use the sidebar to browse:
+Use the navigation bar above to browse:
 
 - **[General](/general)** — general training notes and reminders
 - **[Dictionary](/dictionary)** — Japanese karate terminology
